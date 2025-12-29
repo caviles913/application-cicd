@@ -28,7 +28,7 @@ jobs:
         
         # - name: Loging to AWS ECR
 
-        - name: Build Image - Backend
+        - name: Build Image - Backend .
           working-directory: api-backend/
           run: docker build -t application-backend:0.1 .
 
