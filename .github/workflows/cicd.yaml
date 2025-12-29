@@ -13,6 +13,7 @@ permissions:
 
 jobs:
   build-and-deploy:
+    environment: ${{ (github.ref == 'refs/heads/main' && 'production') || (github.ref == 'refs/heads/staging' && 'staging') || 'dev' }}
     runs-on: ubuntu-latest  
     steps:
         - name: Checkout Repository
