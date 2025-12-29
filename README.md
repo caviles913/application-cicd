@@ -9,37 +9,12 @@ This repository contains a 3-tier web application, the Product Review System, wh
 
 - The MySQL Database stores product and review data.
 
-For more details about each component, refer to the README files in their respective directories:
 
-- [Frontend](./frontend/README.md)
-- [Backend](./api-backend/README.md)
+Steps to for GitHub Repo:
 
-## Important Note
-Since our frontend just hosts static webpages, it relies on client-side browser processing with Javascript. Therefore requests to the backend come from the user directly (browsers calls the APIs to backend), which means that backend DNS name also needs to be publicly accessible.
-
-Flow of the request is `Client => Frontend => Client => Backend => Database`
-
-
-## Diagrams
-
-**Software Design Overview**
-![Software Design Overview](random/mini-project-software-design.png)
-
-**Infrastructure Design Overview**
-![Infrastructure Design Overview](random/mini-project-infra.png)
-
-
-
-## Helpful Resources on Learning to work with Git:
-
-Naming Conventions:
-
-- Best practices for file and branch naming: **https://namingconvention.org/git/**
-
-Git/GitHub Fundamentals:
-
-- Official Git documentation: **https://git-scm.com/doc**
-
-Pull Requests (PRs):
-- GitHub Pull Request documentation: **https://docs.github.com/en/pull-requests**
+AWS Console: create image repo in AWS ECR for each application
+Terminal: docker build ... for each app
+        : login to AWS account where ECR was created. Make sure you (your user or role) have permissions to push image
+        : docker login ...
+        : docker tag and push ... in each app folder
 
