@@ -1,0 +1,12 @@
+name: Application CI/CD - Build and Deploy on Code Change
+
+on:
+  push:
+    branches:
+      - main
+      - staging
+      - feature/dev
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
