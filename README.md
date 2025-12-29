@@ -3,52 +3,43 @@
 ## Overview
 This repository contains a 3-tier web application, the Product Review System, where users can add products and leave reviews. The 3-tier architecture comprises a frontend, backend, and a database. The application is designed to run on AWS infrastructure with high availability and scalability in mind.
 
-# Application CI/CD Architecture
+- The Frontend application provides a user interface built with HTML, CSS, and JavaScript, served by an Nginx server. 
 
-This repository contains a containerized, multi-tier application consisting of a Frontend, Backend, and Database. The application is built using Docker and designed to be deployed using AWS Elastic Container Registry (ECR).
+- The Backend is a RESTful API built with Python and Flask, which processes requests, performs operations, and interfaces with a MySQL database.
 
----
+- The MySQL Database stores product and review data.
 
-## Application Components
+For more details about each component, refer to the README files in their respective directories:
 
-### Frontend
-- Built with HTML, CSS, and JavaScript
-- Provides the user interface
-- Served using Nginx
+- [Frontend](./frontend/README.md)
+- [Backend](./api-backend/README.md)
 
-### Backend
-- RESTful API built with Python and Flask
-- Handles request processing and business logic
-- Interfaces with the MySQL database
+## Important Note
+Since our frontend just hosts static webpages, it relies on client-side browser processing with Javascript. Therefore requests to the backend come from the user directly (browsers calls the APIs to backend), which means that backend DNS name also needs to be publicly accessible.
 
-### Database
-- MySQL database
-- Stores product and review data
+Flow of the request is `Client => Frontend => Client => Backend => Database`
 
----
 
-## Deployment Steps for GitHub Repository
+## Diagrams
 
-### AWS Console
-1. Create an ECR repository in AWS for each application (Frontend, Backend, Database).
+**Software Design Overview**
+![Software Design Overview](random/mini-project-software-design.png)
 
-### Local Terminal
-1. Authenticate Docker with AWS ECR.
-2. Build Docker images for each application.
-3. Tag and push Docker images to the ECR repositories.
+**Infrastructure Design Overview**
+![Infrastructure Design Overview](random/mini-project-infra.png)
 
-Ensure that:
-- You are logged into the correct AWS account.
-- Your AWS user or role has permissions to push images to ECR.
 
----
 
-## AWS ECR Authentication
+## Helpful Resources on Learning to work with Git:
 
-Retrieve an authentication token and authenticate your Docker client using the AWS CLI:
+Naming Conventions:
 
-```bash
-aws ecr get-login-password --region us-east-1 | docker login \
---username AWS \
---password-stdin 585412048804.dkr.ecr.us-east-1.amazonaws.com
+- Best practices for file and branch naming: **https://namingconvention.org/git/**
+
+Git/GitHub Fundamentals:
+
+- Official Git documentation: **https://git-scm.com/doc**
+
+Pull Requests (PRs):
+- GitHub Pull Request documentation: **https://docs.github.com/en/pull-requests**
 
