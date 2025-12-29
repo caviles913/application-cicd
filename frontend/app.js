@@ -1,4 +1,4 @@
-var baseUrl = 'http://reviews-api.example.com:80'; // Address for the backend/API server
+var baseUrl = 'http://a2747d9e3dda6485992f7f3e0ac69b7d-1936667441.us-east-1.elb.amazonaws.com:80'; // Address for the backend/API server
 
 // Add product
 $("#product-form").submit(function (e) {
