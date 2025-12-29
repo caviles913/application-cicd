@@ -7,6 +7,30 @@ on:
       - staging
       - feature/dev
 
+permissions:
+  id-token: write
+  contents: read      
+
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  
+    steps:
+        - name: Checkout Repository
+          uses: actions/checkout@v4
+
+        - name: Configure AWS credentials (OIDC)
+          uses: aws-actions/configure-aws-credentials@v5
+          with:
+            role-to-assume: ${{vars.IAM_ROLE}}
+            aws-region: us-east-1
+            role-session-name: login-session-by-github-actions
+        
+        # - name: Loging to AWS ECR
+
+        - name: Build Image - Backend
+          working-directory: api-backend/
+          run: docker build -t application-backend:0.1 .
+
+        # - name: Tag Image
+
+        # - name: Push Image to ECR
