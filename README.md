@@ -14,7 +14,7 @@ Steps to for GitHub Repo:
 
 AWS Console: create image repo in AWS ECR for each application
 Terminal: docker build ... for each app
-        : login to AWS account where ECR was created. Make sure you (your user or role) have permissions to push image
-        : docker login ...
-        : docker tag and push ... in each app folder
+        - login to AWS account where ECR was created. Make sure you (your user or role) have permissions to push image
+        - docker login ...
+        - docker tag and push ... in each app folder
 
