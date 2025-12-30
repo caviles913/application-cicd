@@ -27,18 +27,39 @@ jobs:
             role-session-name: login-session-by-github-actions
         
         - name: Login to Amazon ECR
-          id: login-ecr
+          id: login-registry
           uses: aws-actions/amazon-ecr-login@v2
 
-        - name: Build, tag, and push image to Amazon ECR
+        - name: Backend - Build, tag, and push image to Amazon ECR
           working-directory: api-backend
           env:
-            ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+            ECR_REGISTRY: ${{ steps.login-registry.outputs.registry }}
             ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY_NAME }}
-            IMAGE_TAG: latest
+            IMAGE_TAG: backend-latest
           run: |
-            #   Build the Docker image
                  docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-            # Push the Docker image
-                docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG    
+                 docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG    
    
+        # - name: Login to Kubenertes cluster (EKS)
+        #   uses: aws-actions/eks-login@v1
+        #   with:
+        #     cluster-name: ${{ vars.EKS_CLUSTER_NAME }}
+        #     region: us-east-1
+
+        - name: Frontend - Build, tag, and push image to Amazon ECR
+          working-directory: frontend
+          env:
+            ECR_REGISTRY: ${{ steps.login-registry.outputs.registry }}
+            ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY_NAME }}
+            IMAGE_TAG: frontend-latest
+          run: |
+                 docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+                 docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG   
+        
+        
+        # - name: Login to Kubernetes cluster (EKS)
+        #   run: aws eks update-kubeconfig --name ${{ vars.EKS_CLUSTER_NAME }} --region us-east-1
+
+        # - name: Deploy Application to Kubernetes (image to pod)
+        #   working-directory: api-backend
+        #   run: kubectl apply -f k8s/
