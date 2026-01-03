@@ -57,5 +57,5 @@ jobs:
         - name: Backend - Deploy Application to Kubernetes (image to pod)
           run: helm upgrade --install reviews-backend app-chart --values app-chart/backend-values.yaml
 
-        - name: Frontend - Deploy Application to Kubernetes (image to pod)
-          run: helm upgrade --install reviews-frontend app-chart --values app-chart/frontend-values.yaml
+        # - name: Frontend - Deploy Application to Kubernetes (image to pod)
+        #   run: helm upgrade --install reviews-frontend app-chart --values app-chart/frontend-values.yaml
