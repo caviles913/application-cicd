@@ -1,0 +1,6 @@
+appName: reviews-frontend
+replicaCount: 1
+image:
+  Repo: 585412048804.dkr.ecr.us-east-1.amazonaws.com/application-cicd-frontend
+  Tag: backend-latest
+port: 80  
