@@ -30,35 +30,35 @@ jobs:
           id: login-registry
           uses: aws-actions/amazon-ecr-login@v2
 
-        # - name: Backend - Build, tag, and push image to Amazon ECR
-        #   working-directory: api-backend
-        #   env:
-        #     ECR_REGISTRY: ${{ steps.login-registry.outputs.registry }}
-        #     ECR_REPOSITORY: application-cicd-backend
-        #     IMAGE_TAG: backend-latest
-        #   run: |
-        #          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-        #          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG    
+        - name: Backend - Build, tag, and push image to Amazon ECR
+          working-directory: api-backend
+          env:
+            ECR_REGISTRY: ${{ steps.login-registry.outputs.registry }}
+            ECR_REPOSITORY: application-cicd-backend
+            IMAGE_TAG: backend-latest
+          run: |
+                 docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+                 docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG    
    
-        # - name: Frontend - Build, tag, and push image to Amazon ECR
-        #   working-directory: frontend
-        #   env:
-        #     ECR_REGISTRY: ${{ steps.login-registry.outputs.registry }}
-        #     ECR_REPOSITORY: application-cicd-frontend
-        #     IMAGE_TAG: frontend-latest
-        #   run: |
-        #          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-        #          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG   
+        - name: Frontend - Build, tag, and push image to Amazon ECR
+          working-directory: frontend
+          env:
+            ECR_REGISTRY: ${{ steps.login-registry.outputs.registry }}
+            ECR_REPOSITORY: application-cicd-frontend
+            IMAGE_TAG: frontend-latest
+          run: |
+                 docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+                 docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG   
         
         
         - name: Login to Kubernetes cluster (EKS)
           run: aws eks update-kubeconfig --name ${{ vars.EKS_CLUSTER_NAME }} --region us-east-1
 
-        # - name: Backend - Deploy Application to Kubernetes (image to pod)
-        #   run: helm upgrade --install reviews-backend app-chart --values app-chart/backend-values.yaml
+        - name: Backend - Deploy Application to Kubernetes (image to pod)
+          run: helm upgrade --install reviews-backend app-chart --values app-chart/backend-values.yaml
 
-        # - name: Frontend - Deploy Application to Kubernetes (image to pod)
-        #   run: helm upgrade --install reviews-frontend app-chart --values app-chart/frontend-values.yaml
+        - name: Frontend - Deploy Application to Kubernetes (image to pod)
+          run: helm upgrade --install reviews-frontend app-chart --values app-chart/frontend-values.yaml
 
         # - name: Uninstall Helm Releases (if needed)
         #   run: |
