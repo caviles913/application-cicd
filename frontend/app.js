@@ -1,4 +1,4 @@
-var baseUrl = 'http://a632fea70745b4240a971590693c600b-673399434.us-east-1.elb.amazonaws.com:80'; // Address for the backend/API server
+var baseUrl = 'http://a68613bc29de74e2c87f487e0181eb3a-944863862.us-east-1.elb.amazonaws.com:80'; // Address for the backend/API server
 
 // Add product
 $("#product-form").submit(function (e) {
