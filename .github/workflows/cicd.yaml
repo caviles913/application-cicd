@@ -54,7 +54,6 @@ jobs:
         - name: Login to Kubernetes cluster (EKS)
           run: |
             aws eks update-kubeconfig --name ${{ vars.EKS_CLUSTER_NAME }} --region us-east-1
-            kubectl config current-context
 
         - name: Backend - Deploy Application to Kubernetes (image to pod)
           run: helm upgrade --install reviews-backend app-chart --values app-chart/backend-values.yaml
