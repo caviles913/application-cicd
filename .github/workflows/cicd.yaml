@@ -64,4 +64,4 @@ jobs:
         # - name: Uninstall Helm Releases (if needed)
         #   run: |
         #       helm uninstall reviews-backend 
-        #       helm uninstall reviews-frontend .
+        #       helm uninstall reviews-frontend ..
