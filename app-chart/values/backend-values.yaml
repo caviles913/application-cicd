@@ -1,7 +1,7 @@
 appName: reviews-backend
 replicaCount: 1
 serviceType: ClusterIP
-hostname: reviews-api-dev.exchangeweb.net
+hostname: reviews-api-dev.chrisaviles.com
 image:
   Repo: 585412048804.dkr.ecr.us-east-1.amazonaws.com/application-cicd-backend
   Tag: backend-latest
