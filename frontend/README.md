@@ -30,9 +30,14 @@ Once you open frontend webpage from browser, it should display options to add pr
 
 k run --image=mysql bastion-pod -- sleep 600
 
+## to create base64
+echo -n "someValue" | base64
+
 ## to access database
 
 k exec -it bastion-pod -- bash
 
 ## SHOW DATABASES;
 ## use reviewsdb
+
+## In real interview, you can say you used the range fuction for env variables

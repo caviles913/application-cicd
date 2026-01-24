@@ -18,24 +18,11 @@ spec:
         ports:
         - containerPort: {{ .Values.port }}
         env:
-          - name: DB_USERNAME
+        {{- range .Values.secret.keys }}
+          - name: {{ .envName }}
             valueFrom:
               secretKeyRef:
-                name: backend-secret
-                key: DB_USERNAME
-          - name: DB_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: backend-secret
-                key: DB_PASSWORD
-          - name: DB_ENDPOINT
-            valueFrom:
-              secretKeyRef:
-                name: backend-secret
-                key: DB_ENDPOINT
-          - name: DB_NAME
-            valueFrom:
-              secretKeyRef:
-                name: backend-secret
-                key: DB_NAME
-    
+                name: {{ $.Values.secret.name }}
+                key: {{ .secretKey }}
+        {{- end }}
+

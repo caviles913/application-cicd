@@ -56,10 +56,10 @@ jobs:
             aws eks update-kubeconfig --name ${{ vars.EKS_CLUSTER_NAME }} --region us-east-1
 
         - name: Backend - Deploy Application to Kubernetes (image to pod)
-          run: helm upgrade --install reviews-backend app-chart --values app-chart/backend-values.yaml
+          run: helm upgrade --install reviews-backend app-chart --values app-chart/values/backend-values.yaml
 
         - name: Frontend - Deploy Application to Kubernetes (image to pod)
-          run: helm upgrade --install reviews-frontend app-chart --values app-chart/frontend-values.yaml
+          run: helm upgrade --install reviews-frontend app-chart --values app-chart/values/frontend-values.yaml
 
         # - name: Uninstall Helm Releases (if needed)
         #   run: |

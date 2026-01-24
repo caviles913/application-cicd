@@ -1,0 +1,17 @@
+appName: reviews-backend
+replicaCount: 1
+image:
+  Repo: 585412048804.dkr.ecr.us-east-1.amazonaws.com/application-cicd-backend
+  Tag: backend-latest
+port: 80  
+secret:
+  name: backend-secret
+  keys:
+  - envName: DB_USERNAME
+    secretKey: DB_USERNAME
+  - envName: DB_PASSWORD
+    secretKey: DB_PASSWORD
+  - envName: DB_ENDPOINT
+    secretKey: DB_ENDPOINT
+  - envName: DB_NAME
+    secretKey: DB_NAME
