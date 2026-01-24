@@ -33,3 +33,6 @@ k run --image=mysql bastion-pod -- sleep 600
 ## to access database
 
 k exec -it bastion-pod -- bash
+
+## SHOW DATABASES;
+## use reviewsdb
