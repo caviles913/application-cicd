@@ -24,3 +24,12 @@ This is the frontend application for the Review Application, a simple web servic
 Once you open frontend webpage from browser, it should display options to add products, reviews, and should show reviews once you add them. If these features are not working - check for errors in Chrome Console:
 
 - right click somewhere on the chrome browser page while you have site open => Inspect => Console => errors should show up here (some errors can be ignored, but pay attention to connection errors to backend if you see any)
+
+
+## To create a pod
+
+k run --image=mysql bastion-pod -- sleep 600
+
+## to access database
+
+k exec -it bastion-pod -- bash
