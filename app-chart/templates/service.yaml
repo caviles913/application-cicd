@@ -10,4 +10,4 @@ spec:
     targetPort: {{ .Values.port }}
   selector:
     app: {{ .Values.appName }}
-  type: LoadBalancer
+  type: {{ .Values.serviceType }}

@@ -31,7 +31,7 @@ Once you open frontend webpage from browser, it should display options to add pr
 k run --image=mysql bastion-pod -- sleep 600
 
 ## to create base64
-echo -n "someValue" | base64
+echo -n 'someValue' | base64
 
 ## to access database
 
