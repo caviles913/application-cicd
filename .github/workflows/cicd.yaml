@@ -30,25 +30,25 @@ jobs:
           id: login-registry
           uses: aws-actions/amazon-ecr-login@v2
 
-        # - name: Backend - Build, tag, and push image to Amazon ECR
-        #   working-directory: api-backend
-        #   env:
-        #     ECR_REGISTRY: ${{ steps.login-registry.outputs.registry }}
-        #     ECR_REPOSITORY: application-cicd-backend
-        #     IMAGE_TAG: backend-latest
-        #   run: |
-        #          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-        #          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG    
+        - name: Backend - Build, tag, and push image to Amazon ECR
+          working-directory: api-backend
+          env:
+            ECR_REGISTRY: ${{ steps.login-registry.outputs.registry }}
+            ECR_REPOSITORY: application-cicd-backend
+            IMAGE_TAG: backend-latest
+          run: |
+                 docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+                 docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG    
    
-        # - name: Frontend - Build, tag, and push image to Amazon ECR
-        #   working-directory: frontend
-        #   env:
-        #     ECR_REGISTRY: ${{ steps.login-registry.outputs.registry }}
-        #     ECR_REPOSITORY: application-cicd-frontend
-        #     IMAGE_TAG: frontend-latest
-        #   run: |
-        #          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-        #          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG   
+        - name: Frontend - Build, tag, and push image to Amazon ECR
+          working-directory: frontend
+          env:
+            ECR_REGISTRY: ${{ steps.login-registry.outputs.registry }}
+            ECR_REPOSITORY: application-cicd-frontend
+            IMAGE_TAG: frontend-latest
+          run: |
+                 docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+                 docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG   
         
         
         - name: Login to Kubernetes cluster (EKS)
