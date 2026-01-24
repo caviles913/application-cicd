@@ -41,3 +41,6 @@ k exec -it bastion-pod -- bash
 ## use reviewsdb
 
 ## In real interview, you can say you used the range fuction for env variables
+
+## k get ingress
+## k get ingress reviews-backend-ingress -o yaml | less 
